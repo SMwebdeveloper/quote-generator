@@ -9,14 +9,14 @@ let apiQuotes = []
 
 // loader
 
-function loading(){
+function showLoadingSpinner(){
     loader.hidden = false
     quoteContainer.hidden = true
 }
 
 
 // hide loading
-function complete(){
+function removeLoadingSpinner(){
     if (!loader.hidden) {
         quoteContainer.hidden = false
         loader.hidden = true
@@ -24,7 +24,7 @@ function complete(){
 }
 // get api
 async function getQuote(){
-    loading()
+    showLoadingSpinner()
     // const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
     const apiUrl = 'https://jacintodesign.github.io/quotes-api/data/quotes.json'
     try{
@@ -47,7 +47,7 @@ async function getQuote(){
             quoteText.classList.add('long-quote')
         }
         quoteText.innerText = quote.text
-        complete()
+        removeLoadingSpinner()
     } catch (error){
         getQuote()
       
